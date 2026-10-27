@@ -1,0 +1,97 @@
+:root{
+  color-scheme:light;
+  font-family:system-ui,sans-serif;
+  background:#f8f1eb;color:#3c2b31
+}
+*{box-sizing:border-box}
+body{margin:0}
+header{
+  background:#603e56;
+  color:white;
+  padding:18px max(18px,calc((100vw - 1100px)/2));
+  display:flex;align-items:center;
+  justify-content:space-between;
+  gap:12px;flex-wrap:wrap
+}
+h1{margin:0;font-size:1.45rem}
+header span{font-size:.85rem}
+main{max-width:1100px;margin:24px auto;padding:0 16px}
+.panel{
+  background:#fff;
+  border:1px solid #e4d3d9;
+  border-radius:18px;
+  padding:20px;margin:16px 0;
+  box-shadow:0 3px 12px #603e5610
+}
+h2{margin:0 0 12px;font-size:1.15rem}
+h3{margin:20px 0 8px}
+p,small{color:#6e5d64;font-size:.9rem}
+label{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:.9rem;
+  font-weight:650;
+  margin:12px 0
+}
+input,select,textarea{
+  width:100%;
+  padding:11px;
+  border:1px solid #cebcc3;
+  border-radius:9px;
+  font:inherit;
+  color:inherit;
+  background:white
+}
+textarea{resize:vertical}
+button{
+  border:none;
+  background:#935879;
+  color:white;
+  padding:11px 16px;
+  border-radius:10px;
+  font:inherit;font-weight:650;
+  cursor:pointer
+}
+button:hover{filter:brightness(.95)}
+button:disabled{opacity:.5;cursor:default}
+button.secondary{background:#e8dce3;color:#603e56}
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:12px 0
+}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{background:#e4d7dd;color:#583447}
+nav button.active{background:#7b4b66;color:white}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+  gap:0 16px;align-items:end
+}
+.grid button{margin:12px 0}
+.record{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;gap:10px;
+  padding:12px;
+  border-bottom:1px solid #eee2e6
+}
+.record .actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.record input{max-width:220px}
+.record span{font-size:.85rem;color:#715f67}
+#message{
+  position:sticky;
+  bottom:12px;background:#493043;
+  color:white;
+  padding:12px;
+  border-radius:10px;display:none}
+#message.error{background:#8c263e}
+[hidden]{display:none!important}
+@media(max-width:500px){
+  .panel{padding:14px}
+  .record{align-items:stretch}
+  .record .actions{width:100%}
+}
