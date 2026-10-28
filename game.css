@@ -45,7 +45,7 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 @media(max-width:760px){
-  .stageScene{min-height:620px}
+  .stageScene{min-height:640px}
   .customerWrap{left:50%;transform:translateX(-50%);width:min(54vw,250px);bottom:22%}
   .bubbleWrap{left:7%;right:7%;top:4%;width:auto}
   .bubble{margin:10px;padding:20px 18px 18px;min-height:150px}
