@@ -137,13 +137,84 @@ async function loadInventory(){
  }
  catch(e){fail(e)}
 }
-function renderCustomerSelects(){for(const id of ['customerSelect','reviewCustomer']){const n=$(id),old=n.value;n.replaceChildren();for(const c of customers){const o=el('option',`${c.name}${c.mystery?' (Mystery)':''}`);o.value=c.code;n.append(o)}if(customers.some(c=>c.code===old))n.value=old}loadCustomer();renderReview()}
-function loadCustomer(){const c=customers.find(x=>x.code===$('customerSelect').value);if(!c)return;$('entranceDialogue').value=(c.entrance_dialogue||[]).join('\n');$('orderDialogue').value=c.order_dialogue;$('portraitPath').value=c.portrait_path||'';$('speechPath').value=c.speech_image_path||'';const t=templates.find(x=>x.customer_code===c.code);$('orderJSON').value=JSON.stringify(t?.requirements&&Object.keys(t.requirements).length?t.requirements:{flavor:'milky',layers:1,cream:{},toppings:{}},null,2)}
+function renderCustomerSelects(){
+ for(const id of ['customerSelect','reviewCustomer']){
+  const n=$(id),old=n.value;n.replaceChildren();
+  for(const c of customers){
+   const o=el('option',`${c.name}${c.mystery?' (Mystery)':''}`);
+   o.value=c.code;n.append(o)
+  }
+  if(customers.some(c=>c.code===old))n.value=old}loadCustomer();
+ renderReview()
+}
+function loadCustomer(){
+ const c=customers.find(x=>x.code===$('customerSelect').value);
+ if(!c)return;
+ $('entranceDialogue').value=(c.entrance_dialogue||[]).join('\n');$('orderDialogue').value=c.order_dialogue;
+ $('portraitPath').value=c.portrait_path||'';
+ $('speechPath').value=c.speech_image_path||'';
+ const t=templates.find(x=>x.customer_code===c.code);
+ $('orderJSON').value=JSON.stringify(t?.requirements&&Object.keys(t.requirements).length?t.requirements:{
+  flavor:'milky',
+  layers:1,
+  cream:{},
+  toppings:{}
+ },null,2)
+}
 $('customerSelect').onchange=loadCustomer;
-$('customerForm').onsubmit=e=>{e.preventDefault();action(async()=>{await unwrap(sb.rpc('admin_save_customer',{p_code:$('customerSelect').value,p_entrance_dialogue:$('entranceDialogue').value.split('\n').map(s=>s.trim()).filter(Boolean),p_order_dialogue:$('orderDialogue').value,p_portrait_path:$('portraitPath').value,p_speech_image_path:$('speechPath').value}));await refresh()},'Customer dialogue saved')};
-$('orderForm').onsubmit=e=>{e.preventDefault();action(async()=>{const requirements=JSON.parse($('orderJSON').value);await unwrap(sb.rpc('admin_save_template',{p_code:$('customerSelect').value,p_requirements:requirements}));await refresh()},'Recurring order saved (future weeks)')};
-function renderReview(){const r=reviews.find(x=>x.customer_code===$('reviewCustomer').value&&x.stars===Number($('reviewStars').value));$('reviewText').value=r?.review_text||'';$('reviewImage').value=r?.review_image_path||''}
-$('reviewCustomer').onchange=renderReview;$('reviewStars').onchange=renderReview;
-$('reviewForm').onsubmit=e=>{e.preventDefault();action(async()=>{await unwrap(sb.rpc('admin_save_review',{p_code:$('reviewCustomer').value,p_stars:Number($('reviewStars').value),p_text:$('reviewText').value,p_image_path:$('reviewImage').value}));reviews=await unwrap(sb.from('review_cards').select('*'));renderReview()},'Review card saved')};
-async function loadPurchases(){try{const p=await unwrap(sb.from('purchases').select('id,user_id,total_tarots,status,created_at').order('created_at',{ascending:false}).limit(100));const root=$('purchasesList');root.replaceChildren();if(!p.length){root.append(el('p','No purchases yet. Checkout is a later step.'));return}for(const purchase of p){const member=members.find(x=>x.user_id===purchase.user_id);const row=el('div',undefined,'record');row.append(el('span',`${member?.username||'Unknown'} • ${purchase.total_tarots}🂱 • ${purchase.status}`));if(!['deducted','cancelled'].includes(purchase.status)){const b=el('button','Mark deducted');b.onclick=()=>action(async()=>{await unwrap(sb.rpc('admin_set_purchase_status',{p_purchase_id:purchase.id,p_status:'deducted'}));await loadPurchases()},'Marked as deducted');row.append(b)}root.append(row)}}catch(e){fail(e)}}
+$('customerForm').onsubmit=e=>{
+ e.preventDefault();
+ action(async()=>{
+  await unwrap(sb.rpc('admin_save_customer',{
+   p_code:$('customerSelect').value,
+   p_entrance_dialogue:$('entranceDialogue').value.split('\n').map(s=>s.trim()).filter(Boolean),
+   p_order_dialogue:$('orderDialogue').value,
+   p_portrait_path:$('portraitPath').value,
+   p_speech_image_path:$('speechPath').value}));
+  await refresh()},'Customer dialogue saved')
+};
+$('orderForm').onsubmit=e=>{
+ e.preventDefault();
+ action(async()=>{
+  const requirements=JSON.parse($('orderJSON').value);
+  await unwrap(sb.rpc('admin_save_template',{p_code:$('customerSelect').value,p_requirements:requirements}));
+  await refresh()},'Recurring order saved (future weeks)')
+};
+function renderReview(){
+ const r=reviews.find(x=>x.customer_code===$('reviewCustomer').value&&x.stars===Number($('reviewStars').value));
+ $('reviewText').value=r?.review_text||'';
+ $('reviewImage').value=r?.review_image_path||''
+}
+$('reviewCustomer').onchange=renderReview;
+$('reviewStars').onchange=renderReview;
+$('reviewForm').onsubmit=e=>{
+ e.preventDefault();
+ action(async()=>{
+  await unwrap(sb.rpc('admin_save_review',{
+   p_code:$('reviewCustomer').value,
+   p_stars:Number($('reviewStars').value),
+   p_text:$('reviewText').value,
+   p_image_path:$('reviewImage').value}));
+  reviews=await unwrap(sb.from('review_cards').select('*'));
+  renderReview()},'Review card saved')
+};
+async function loadPurchases(){try{
+ const p=await unwrap(
+  sb.from('purchases')
+  .select('id,user_id,total_tarots,status,created_at')
+  .order('created_at',{ascending:false}).limit(100));
+ const root=$('purchasesList');
+ root.replaceChildren();if(!p.length){
+  root.append(el('p','No purchases yet. Checkout is a later step.'));
+  return}
+ for(const purchase of p){
+  const member=members.find(x=>x.user_id===purchase.user_id);
+  const row=el('div',undefined,'record');
+  row.append(el('span',`${member?.username||'Unknown'} • ${purchase.total_tarots}🂱 • ${purchase.status}`));
+  if(!['deducted','cancelled'].includes(purchase.status)){
+   const b=el('button','Mark deducted');
+   b.onclick=()=>action(async()=>{
+    await unwrap(sb.rpc('admin_set_purchase_status',{p_purchase_id:purchase.id,p_status:'deducted'}));
+    await loadPurchases()},'Marked as deducted');
+   row.append(b)}root.append(row)}}catch(e){fail(e)}}
 authenticate();
