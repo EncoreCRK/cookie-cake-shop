@@ -94,6 +94,19 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
   object-fit: contain !important;
 }
 
+/* MOBILE CUSTOMER SIZE */
+@media (max-width: 760px) {
+  .customerWrap {
+    width: 85vw !important;
+    left: -5% !important;
+    bottom: 0 !important;
+  }
+
+  #portrait {
+    max-height: 650px !important;
+  }
+}
+
 /* BIGGER RECEPTION DESK */
 #receptionDesk {
   position: absolute !important;
