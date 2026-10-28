@@ -106,3 +106,61 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
     max-height: 650px !important;
   }
 }
+
+/* MATCH BACKGROUND AND RECEPTION */
+
+.stageScene {
+  position: relative;
+  aspect-ratio: 5 / 3;
+  min-height: 0 !important;
+  height: auto !important;
+  overflow: hidden;
+}
+
+/* Both images use the same canvas coordinates */
+
+#sceneBg,
+#receptionDesk {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: fill !important;
+
+  transform: none !important;
+}
+
+/* Layer arrangement */
+
+#sceneBg {
+  z-index: 0 !important;
+}
+
+.customerLane {
+  z-index: 2 !important;
+}
+
+#receptionDesk {
+  z-index: 5 !important;
+  pointer-events: none;
+}
+
+.bubbleWrap {
+  z-index: 6 !important;
+}
+
+/* Remove placeholder artwork */
+
+.sceneFallbackBg,
+.sceneFallbackDesk {
+  display: none !important;
+}
