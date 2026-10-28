@@ -71,7 +71,7 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
 .bubble.customArt:before{display:none}
 .bubble.customArt strong,.bubble.customArt p{text-shadow:0 1px 2px #fff9}
 @media(max-width:760px){
- .stageScene{min-height:650px}
+ .stageScene{min-height:600px}
  .customerWrap{left:10%;bottom:0;width:76%;max-width:none}
  #portrait{max-height:500px}
  .bubbleWrap{top:3%;left:5%;right:5%}
