@@ -6,7 +6,8 @@ const defaultAssets = {
   orderSceneBackground: '/assets/orders-background.png',
   receptionDesk: '/assets/reception.png'
 };
-const sceneAssets = {...defaultAssets, ...(cfg?.assets || {})};
+const sceneAssets = {...defaultAssets, ...(cfg?.assets || {}), ...(window.CAKE_SCENE_ASSETS?.scene || {})};
+const characterAssets = window.CAKE_SCENE_ASSETS?.characters || {};
 function view(id){sections.forEach(x => $(x).hidden = x !== id)}
 function say(msg){$('alert').textContent = msg || ''}
 if(!cfg?.supabaseUrl || !cfg?.supabaseKey || cfg.supabaseUrl.includes('YOUR_NEW')) say('First configure config.js with the new Cake Shop project keys.');
@@ -14,25 +15,29 @@ const sb = createClient(cfg.supabaseUrl, cfg.supabaseKey);
 let orders = [], frames = [], frame = 0, active = null;
 
 async function unwrap(p){const {data,error}=await p;if(error) throw error; return data}
-function setImage(el,url,showFallback){
-  const finalUrl = url && /^(https:\/\/|\/)/.test(url) ? url : '';
-  if(finalUrl){
-    el.src = finalUrl;
+function setImage(el, url, fallback = null, onLoaded = null){
+  const finalUrl = typeof url === 'string' && /^(https:\/\/|\/)/.test(url) ? url : '';
+  el.onload = null;
+  el.onerror = null;
+  if(fallback) fallback.hidden = false;
+  if(!finalUrl){el.hidden = true;el.removeAttribute('src');return;}
+  el.hidden = true;
+  el.onload = () => {
     el.hidden = false;
-    el.onerror = () => {
-      el.hidden = true;
-      if(showFallback) showFallback.hidden = false;
-    };
-  } else {
-    el.removeAttribute('src');
+    if(fallback) fallback.hidden = true;
+    if(onLoaded) onLoaded(true);
+  };
+  el.onerror = () => {
     el.hidden = true;
-    if(showFallback) showFallback.hidden = false;
-  }
+    if(fallback) fallback.hidden = false;
+    if(onLoaded) onLoaded(false);
+    console.warn('Missing cake shop image:', finalUrl);
+  };
+  el.src = finalUrl;
 }
 function setSceneArt(){
-  const bg = $('sceneBg'), desk = $('receptionDesk');
-  setImage(bg, sceneAssets.orderSceneBackground);
-  setImage(desk, sceneAssets.receptionDesk);
+  setImage($('sceneBg'), sceneAssets.orderSceneBackground);
+  setImage($('receptionDesk'), sceneAssets.receptionDesk, $('sceneFallbackDesk'));
 }
 
 async function init(){
@@ -70,9 +75,11 @@ function renderFrame(){
   $('sceneTitle').textContent = frame === 0 ? 'The bakery doors open...' : 'A special request';
   $('speaker').textContent = o.customer_name;
   $('speech').textContent = s;
-  $('portraitFallback').hidden = !!o.portrait_path;
-  setImage($('portrait'), o.portrait_path, $('portraitFallback'));
-  setImage($('speechArt'), o.speech_image_path);
+  const override = characterAssets[o.customer_code] || {};
+  setImage($('portrait'), override.sprite || o.portrait_path, $('portraitFallback'));
+  const bubble = $('bubbleBox');
+  bubble.classList.remove('customArt');
+  setImage($('speechArt'), override.bubble || o.speech_image_path, null, loaded => bubble.classList.toggle('customArt', loaded));
   $('sceneCounter').textContent = `${frame + 1} / ${frames.length}`;
   $('prevLine').disabled = frame === 0;
   $('nextLine').textContent = frame === frames.length - 1 ? 'Choose an order →' : 'Continue →';
@@ -105,9 +112,10 @@ function showOrders(){
     const title = document.createElement('h2');
     title.textContent = o.customer_name;
     card.append(title);
-    if(o.portrait_path){
+    const characterSprite = characterAssets[o.customer_code]?.sprite || o.portrait_path;
+    if(characterSprite){
       const img = document.createElement('img');
-      setImage(img,o.portrait_path);
+      setImage(img, characterSprite);
       card.append(img);
     }
     const d = document.createElement('div');
