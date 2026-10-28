@@ -106,19 +106,3 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
     max-height: 650px !important;
   }
 }
-
-/* BIGGER RECEPTION DESK */
-#receptionDesk {
-  position: absolute !important;
-  width: 110% !important;
-  height: 110% !important;
-
-  left: -5% !important;
-  bottom: 0 !important;
-
-  object-fit: contain !important;
-  object-position: bottom center !important;
-
-  z-index: 5 !important;
-  pointer-events: none !important;
-}
