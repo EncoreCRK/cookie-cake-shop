@@ -78,3 +78,18 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
  .sceneLayer.desk{height:100%}
 }
 @media(prefers-reduced-motion:reduce){.customerWrap{animation:none;transition:none}}
+
+/* BIGGER CUSTOMER SPRITES */
+.customerWrap {
+  width: 440px !important;
+  max-width: none !important;
+  left: 2% !important;
+  bottom: 0 !important;
+}
+
+#portrait {
+  width: 100% !important;
+  max-height: 650px !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
