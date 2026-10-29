@@ -1,0 +1,128 @@
+/* ONLY page-specific animation/layout additions. Your existing game.css and its customized background / reception / customer alignment remain unchanged. */
+[hidden] {
+  display: none !important;
+}
+.stageScene .dialogueCompanionWrap {
+  position: absolute;
+  bottom: 0;
+  right: 1%;
+  width: 47%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+  animation: cookieIdle 3.8s ease-in-out infinite;
+}
+.stageScene .dialogueCompanionWrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 95%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.25));
+}
+/* Solo PV starts on the right. Only active during the special week. */
+.stageScene.dialoguePvSolo .customerWrap {
+  left: 43% !important;
+  width: 47% !important;
+  bottom: 0 !important;
+}
+/* SM takes the left on entering, while PV stays on the right. */
+.stageScene.dialogueDuo .customerWrap {
+  left: 1% !important;
+  width: 49% !important;
+  bottom: 0 !important;
+}
+.stageScene.dialogueDuo .bubbleWrap {
+  right: 2% !important;
+  left: auto !important;
+  width: 47% !important;
+  top: 4% !important;
+}
+/* Dialogue text may have its own bubble PNG on any page. */
+.stageScene.dialogueBubbleLeft:not(.dialogueDuo) .bubbleWrap {
+  left: 3% !important;
+  right: auto !important;
+}
+.stageScene .dialogueReactionWrap {
+  position: absolute;
+  top: 4%;
+  left: 2%;
+  width: 47%;
+  min-height: 125px;
+  z-index: 6;
+  padding: 20px 22px;
+  border-radius: 20px;
+  background: #fff1e4;
+  color: #3f2845;
+  text-align: center;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+  transition: opacity 0.2s ease;
+}
+.stageScene .dialogueReactionArt {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: 0;
+}
+.stageScene .dialogueReactionWrap.customArt {
+  background: transparent;
+}
+.stageScene .dialogueReactionWrap p {
+  position: relative;
+  z-index: 1;
+  color: #3f2845;
+  font-size: clamp(0.8rem, 1.6vw, 1.2rem);
+  line-height: 1.35;
+  font-weight: 600;
+  margin: 0;
+}
+.stageScene .dialogueReactionWrap.bubbleWaiting {
+  opacity: 0;
+}
+@media (max-width: 760px) {
+  .stageScene.dialogueDuo .customerWrap {
+    left: 0 !important;
+    width: 52% !important;
+  }
+  .stageScene.dialoguePvSolo .customerWrap {
+    left: 34% !important;
+    width: 60% !important;
+  }
+  .stageScene .dialogueCompanionWrap {
+    right: -1%;
+    width: 53%;
+  }
+  .stageScene.dialogueDuo .bubbleWrap {
+    top: 3% !important;
+    right: 2% !important;
+    width: 47% !important;
+  }
+  .stageScene .dialogueReactionWrap {
+    top: 3%;
+    width: 47%;
+    left: 2%;
+    padding: 13px 12px;
+    min-height: 105px;
+  }
+  .stageScene.dialogueDuo #bubbleBox.bubble {
+    padding: 18px 12px !important;
+    font-size: 0.83rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stageScene .dialogueCompanionWrap {
+    animation: none;
+  }
+}
+
+/* Page option frontOfDesk:true places the main Cookie in front of the counter. */
+.stageScene.dialogueFront #customerWrap {
+  z-index: 7 !important;
+}
