@@ -45,7 +45,7 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 @media(max-width:760px){
-  .stageScene{min-height:640px}
+  .stageScene{min-height:620px}
   .customerWrap{left:50%;transform:translateX(-50%);width:min(54vw,250px);bottom:22%}
   .bubbleWrap{left:7%;right:7%;top:4%;width:auto}
   .bubble{margin:10px;padding:20px 18px 18px;min-height:150px}
@@ -71,7 +71,7 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
 .bubble.customArt:before{display:none}
 .bubble.customArt strong,.bubble.customArt p{text-shadow:0 1px 2px #fff9}
 @media(max-width:760px){
- .stageScene{min-height:600px}
+ .stageScene{min-height:650px}
  .customerWrap{left:10%;bottom:0;width:76%;max-width:none}
  #portrait{max-height:500px}
  .bubbleWrap{top:3%;left:5%;right:5%}
@@ -79,88 +79,60 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
 }
 @media(prefers-reduced-motion:reduce){.customerWrap{animation:none;transition:none}}
 
-/* BIGGER CUSTOMER SPRITES */
+/* STEP 4: Walk-in scene and adaptive image-backed bubble. Place AFTER previous rules. */
+.stageScene { isolation:isolate; }
+.customerLane { overflow:visible; }
 .customerWrap {
-  width: 440px !important;
-  max-width: none !important;
-  left: 2% !important;
-  bottom: 0 !important;
+  /* Edit the duration, distance, and destination in these variables */
+  --walk-distance: -120vw;
+  animation: cookieIdle 3.7s ease-in-out infinite;
+  will-change: transform;
 }
-
-#portrait {
-  width: 100% !important;
-  max-height: 650px !important;
-  height: auto !important;
-  object-fit: contain !important;
+.customerWrap.entering {
+  animation: cookieWalkIn 1.65s cubic-bezier(.22,.75,.25,1) both !important;
 }
-
-/* MOBILE CUSTOMER SIZE */
-@media (max-width: 760px) {
-  .customerWrap {
-    width: 85vw !important;
-    left: -5% !important;
-    bottom: 0 !important;
-  }
-
-  #portrait {
-    max-height: 650px !important;
-  }
+@keyframes cookieWalkIn {
+  0% { transform:translateX(var(--walk-distance)) translateY(0); }
+  75% { transform:translateX(12px) translateY(-4px); }
+  100% { transform:translateX(0) translateY(0); }
 }
-
-/* MATCH BACKGROUND AND RECEPTION */
-
-.stageScene {
-  position: relative;
-  aspect-ratio: 5 / 3;
-  min-height: 0 !important;
-  height: auto !important;
-  overflow: hidden;
+@keyframes cookieIdle {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-7px); }
 }
-
-/* Both images use the same canvas coordinates */
-
-#sceneBg,
-#receptionDesk {
-  position: absolute !important;
-
-  top: 0 !important;
-  left: 0 !important;
-  right: auto !important;
-  bottom: auto !important;
-
-  width: 100% !important;
-  height: 100% !important;
-
-  max-width: none !important;
-  max-height: none !important;
-
-  object-fit: fill !important;
-
-  transform: none !important;
+.bubbleWrap { transition: opacity .25s ease, transform .18s ease; }
+.bubbleWrap.bubbleWaiting { opacity:0; pointer-events:none; }
+/* Bubble artwork stretches to the height of the text content. */
+.bubbleArtBox { position:relative; height:auto !important; min-height:0 !important; padding:0 !important; }
+#speechArt.bubbleArt {
+  display:block;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:fill !important;
+  pointer-events:none;
+  z-index:0;
 }
-
-/* Layer arrangement */
-
-#sceneBg {
-  z-index: 0 !important;
+#bubbleBox.bubble {
+  position:relative;
+  margin:0 !important;
+  min-height:155px;
+  padding:30px 36px 34px !important;
+  height:auto !important;
+  width:100%;
+  overflow-wrap:anywhere;
+  z-index:1;
 }
-
-.customerLane {
-  z-index: 2 !important;
+#bubbleBox.bubble.customArt { background:none !important; border:0; box-shadow:none !important; }
+#bubbleBox.bubble.customArt::before { display:none !important; }
+#bubbleBox.bubble strong, #bubbleBox.bubble p { position:relative;z-index:2; }
+#bubbleBox.bubble p { margin-bottom:0; }
+@media(max-width:760px) {
+ .customerWrap { --walk-distance:-140vw; }
+ #bubbleBox.bubble { padding:24px 28px 28px !important; min-height:145px; }
 }
-
-#receptionDesk {
-  z-index: 5 !important;
-  pointer-events: none;
-}
-
-.bubbleWrap {
-  z-index: 6 !important;
-}
-
-/* Remove placeholder artwork */
-
-.sceneFallbackBg,
-.sceneFallbackDesk {
-  display: none !important;
+@media(prefers-reduced-motion:reduce) {
+ .customerWrap.entering { animation: cookieWalkIn 0.01ms linear both !important; }
+ .customerWrap:not(.entering) { animation:none !important; }
 }
