@@ -20,17 +20,44 @@ const el = (tag, cls, text) => {
   if (text !== undefined) x.textContent = text;
   return x;
 };
+// Set your exact PNG filenames here. Each topping code matches its Supabase catalog code.
+const TOPPING_IMAGES = {
+  crimson_cherries: "crimson_cherries.png",
+  bananas: "bananas.png",
+  tangy_blueberries: "tangy_blueberries.png",
+  choco_stars: "choco_stars.png",
+  star_candies: "star_candies.png",
+  pawprint_hard_candies: "pawprint_hard_candies.png",
+  wafer_rolls: "wafer_rolls.png",
+  jellybeans: "jellybeans.png",
+  pink_roses: "pink_roses.png",
+  red_rose_petals: "red_rose_petals.png",
+  fresh_leaves: "fresh_leaves.png",
+};
 function redraw() {
   const root = $("items");
   root.replaceChildren();
   catalog.forEach((t) => {
-    const card = el("div", "item"),
-      title = el("strong", "", t.name),
-      cost = el("small", "", `${t.cost}${TAROT} each`),
-      qty = el("div", "quantity"),
-      minus = el("button", "", MINUS),
-      number = el("span", "", String(cart[t.code] || 0)),
-      plus = el("button", "", "+");
+    const card = el("div", "item");
+    const imageBox = el("div", "topping-picture");
+    const img = el("img", "topping-img");
+    const file = TOPPING_IMAGES[t.code] || `${t.code}.png`;
+    // Prefer an explicitly configured catalog image path when available.
+    const path = t.image_path || `assets/toppings/${file}`;
+    img.src = path;
+    img.alt = t.name;
+    img.loading = "lazy";
+    img.onerror = () => {
+      imageBox.textContent = "Image unavailable";
+      imageBox.classList.add("missing-image");
+    };
+    imageBox.append(img);
+    const title = el("strong", "", t.name);
+    const cost = el("small", "", `${t.cost}${TAROT} each`);
+    const qty = el("div", "quantity");
+    const minus = el("button", "", MINUS);
+    const number = el("span", "", String(cart[t.code] || 0));
+    const plus = el("button", "", "+");
     minus.disabled = !(cart[t.code] > 0);
     minus.onclick = () => {
       cart[t.code] = Math.max(0, (cart[t.code] || 0) - 1);
@@ -41,7 +68,7 @@ function redraw() {
       redraw();
     };
     qty.append(minus, number, plus);
-    card.append(title, cost, qty);
+    card.append(imageBox, title, cost, qty);
     root.append(card);
   });
   const total = catalog.reduce(
@@ -128,7 +155,7 @@ try {
   catalog = await q(
     sb
       .from("topping_catalog")
-      .select("code,name,cost")
+      .select("code,name,cost,image_path")
       .eq("active", true)
       .order("cost")
   );
