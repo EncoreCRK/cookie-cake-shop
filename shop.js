@@ -2,6 +2,10 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const cfg = window.CAKE_CONFIG,
   sb = createClient(cfg.supabaseUrl, cfg.supabaseKey),
   $ = (id) => document.getElementById(id);
+const TAROT = "\u{1F0B1}";
+const MINUS = "\u2212";
+const TIMES = "\u00D7";
+const MIDDLE_DOT = "\u00B7";
 const cart = {};
 let catalog = [];
 const msg = (s) => ($("message").textContent = s);
@@ -10,8 +14,6 @@ async function q(p) {
   if (error) throw error;
   return data;
 }
-const TAROT = '\u{1F0B1}';
-const MINUS = '\u2212';
 const el = (tag, cls, text) => {
   const x = document.createElement(tag);
   if (cls) x.className = cls;
@@ -24,9 +26,9 @@ function redraw() {
   catalog.forEach((t) => {
     const card = el("div", "item"),
       title = el("strong", "", t.name),
-      cost = el("small", "", `${t.cost}ðŸ‚± each`),
+      cost = el("small", "", `${t.cost}${TAROT} each`),
       qty = el("div", "quantity"),
-      minus = el("button", "", "âˆ’"),
+      minus = el("button", "", MINUS),
       number = el("span", "", String(cart[t.code] || 0)),
       plus = el("button", "", "+");
     minus.disabled = !(cart[t.code] > 0);
@@ -46,7 +48,7 @@ function redraw() {
     (sum, t) => sum + (cart[t.code] || 0) * t.cost,
     0
   );
-  $("total").textContent = `Total: ${total}ðŸ‚±`;
+  $("total").textContent = `Total: ${total}${TAROT}`;
   $("checkout").disabled = !total;
 }
 async function refresh() {
@@ -83,12 +85,14 @@ async function refresh() {
     ...history.map((h) => {
       const items = details
         .filter((d) => d.purchase_id === h.id)
-        .map((d) => `${d.quantity} Ã— ${d.topping_code.replaceAll("_", " ")}`)
+        .map(
+          (d) => `${d.quantity} ${TIMES} ${d.topping_code.replaceAll("_", " ")}`
+        )
         .join(", ");
       return el(
         "div",
         "entry",
-        `${new Date(h.created_at).toLocaleString()} Â· ${ h.total_tarots }ðŸ‚± Â· ${h.status}\n${items}`
+        `${new Date(h.created_at).toLocaleString()} ${MIDDLE_DOT} ${ h.total_tarots }${TAROT} ${MIDDLE_DOT} ${h.status}\n${items}`
       );
     })
   );
@@ -121,7 +125,6 @@ try {
     sb.from("profiles").select("role,approved").eq("user_id", user.id).single()
   );
   if (!profile.approved) throw Error("Membership disabled");
-  $("adminLink").hidden = profile.role !== "admin";
   catalog = await q(
     sb
       .from("topping_catalog")
@@ -133,4 +136,4 @@ try {
   await refresh();
 } catch (e) {
   msg(e.message);
-    }
+}
