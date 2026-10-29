@@ -193,3 +193,19 @@ button:disabled{opacity:.5;cursor:not-allowed}.ghost{background:#503d59;color:#f
 .sceneFallbackBg,
 .sceneFallbackDesk {
   display: none !important;
+}
+
+/* BIGGER CUSTOMER SPRITES */
+.customerWrap {
+  width: 440px !important;
+  max-width: none !important;
+  left: 2% !important;
+  bottom: 0 !important;
+}
+
+#portrait {
+  width: 100% !important;
+  max-height: 650px !important;
+  height: auto !important;
+  object-fit: contain !important;
+}
