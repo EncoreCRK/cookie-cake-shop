@@ -265,14 +265,8 @@ function showOrders() {
 }
 
 $("switchOrder").onclick = showOrders;
-$('shop').onclick = () => {
-  window.location.href = 'shop.html';
-};
-  $("placeName").textContent = "Toppings Shop";
-  $("placeTitle").textContent = "A world of sweet decorations";
-  $("placeIntro").textContent =
-    "Here are the available items and their Tarot prices. Purchase controls come in the upcoming shop step.";
-  loadShop();
+$("shop").onclick = () => {
+  window.location.href = "shop.html";
 };
 $("kitchen").onclick = () => {
   view("locationPreview");
