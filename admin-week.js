@@ -1,5 +1,4 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2';
-const TAROT = '\u{1F0B1}';
 const sb=createClient(window.CAKE_CONFIG.supabaseUrl,window.CAKE_CONFIG.supabaseKey),$=id=>document.getElementById(id);
 let items=[];const out=s=>$('status').textContent=s;
 async function call(q){const {data,error}=await q;if(error)throw error;return data}
