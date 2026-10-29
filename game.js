@@ -124,6 +124,10 @@ async function init() {
         s: o.order_dialogue || "I have a cake request for you!",
       });
     });
+    // Optional individual PNG per page; special PV/SM interruption when both are present.
+    if (window.CAKE_DIALOGUE_DRIVER)
+      frames = window.CAKE_DIALOGUE_DRIVER.buildFrames(orders, frames);
+    lastCustomerCode = null;
     frame = 0;
     setSceneArt();
     renderFrame();
@@ -138,8 +142,10 @@ function renderFrame() {
   const current = frames[frame];
   if (!current) return;
   const { o, s } = current;
-  const newCustomer = o.customer_code !== lastCustomerCode;
-  lastCustomerCode = o.customer_code;
+  // Track the onscreen main Cookie, not only the bubble speaker.
+  const onstageCustomer = current.main || o.customer_code;
+  const newCustomer = onstageCustomer !== lastCustomerCode;
+  lastCustomerCode = onstageCustomer;
   $("sceneTitle").textContent =
     frame === 0 ? "The bakery doors open..." : "A special request";
   $("speaker").textContent = o.customer_name;
@@ -158,6 +164,12 @@ function renderFrame() {
     null,
     (loaded) => bubble.classList.toggle("customArt", loaded)
   );
+  if (window.CAKE_DIALOGUE_DRIVER)
+    window.CAKE_DIALOGUE_DRIVER.renderFrame(current, {
+      orders,
+      characterAssets,
+      setImage,
+    });
   $("sceneCounter").textContent = `${frame + 1} / ${frames.length}`;
   $("prevLine").disabled = frame === 0;
   $("nextLine").textContent =
