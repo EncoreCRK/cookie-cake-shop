@@ -8,6 +8,7 @@ async function q(p) {
   if (error) throw error;
   return data;
 }
+const TAROT = '\u{1F0B1}';
 const el = (tag, cls, text) => {
   const x = document.createElement(tag);
   if (cls) x.className = cls;
