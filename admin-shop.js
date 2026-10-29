@@ -1,4 +1,7 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+const TAROT = "\u{1F0B1}";
+const TIMES = "\u00D7";
+const MIDDLE_DOT = "\u00B7";
 const c = window.CAKE_CONFIG,
   sb = createClient(c.supabaseUrl, c.supabaseKey),
   $ = (id) => document.getElementById(id);
@@ -8,7 +11,6 @@ async function q(p) {
   if (error) throw error;
   return data;
 }
-const TAROT = '\u{1F0B1}';
 const el = (tag, cls, text) => {
   const x = document.createElement(tag);
   if (cls) x.className = cls;
@@ -42,12 +44,12 @@ async function load() {
         line = el(
           "strong",
           "",
-          `${users.get(p.user_id) || "Member"} Â· ${p.total_tarots}ðŸ‚±`
+          `${users.get(p.user_id) || "Member"} ${MIDDLE_DOT} ${ p.total_tarots }${TAROT}`
         ),
         meta = el(
           "div",
           "meta",
-          `${new Date(p.created_at).toLocaleString()} | ${p.status}\n${items .filter((i) => i.purchase_id === p.id) .map( (i) => `${i.quantity} Ã— ${i.topping_code.replaceAll("_", " ")} (${ i.quantity * i.unit_cost }ðŸ‚±)` ) .join(", ")}`
+          `${new Date(p.created_at).toLocaleString()} | ${p.status}\n${items .filter((i) => i.purchase_id === p.id) .map( (i) => `${i.quantity} ${TIMES} ${i.topping_code.replaceAll( "_", " " )} (${i.quantity * i.unit_cost}${TAROT})` ) .join(", ")}`
         );
       info.append(line, meta);
       const buttons = el("div");
@@ -100,4 +102,4 @@ try {
 } catch (e) {
   msg(e.message);
   $("ledger").textContent = "";
-}
+                                       }
