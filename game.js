@@ -265,8 +265,9 @@ function showOrders() {
 }
 
 $("switchOrder").onclick = showOrders;
-$("shop").onclick = () => {
-  view("locationPreview");
+$('shop').onclick = () => {
+  window.location.href = 'shop.html';
+};
   $("placeName").textContent = "Toppings Shop";
   $("placeTitle").textContent = "A world of sweet decorations";
   $("placeIntro").textContent =
