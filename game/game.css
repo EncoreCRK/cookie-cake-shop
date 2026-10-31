@@ -502,7 +502,7 @@ button:disabled{
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  width: 110% !important;
+  width: 100% !important;
   height: 110% !important;
   object-fit: fill !important;
 }
