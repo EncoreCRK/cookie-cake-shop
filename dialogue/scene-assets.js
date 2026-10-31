@@ -10,8 +10,8 @@ window.CAKE_SCENE_ASSETS = {
       sprite: '/assets/characters/silent_salt/page-1.png',
       bubble: '/assets/bubbles/salt1.png',
 
-      width: '440px',
-      left: '2%',
+      width: '500px',
+      left: '3%',
       bottom: '0%',
       maxHeight: '650px'
     },
