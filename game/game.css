@@ -504,7 +504,7 @@ button:disabled{
   opacity: 1 !important;
   width: 130% !important;
   height: 130% !important;
-  object-fit: contain !important;
+  object-fit: fill !important;
 }
 
 /* Keep the second bubble in special dual scenes */
