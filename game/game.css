@@ -449,29 +449,73 @@ button:disabled{
   object-fit: contain !important;
 }
 
-/* HIDE ALL WEBSITE-GENERATED DIALOGUE TEXT */
+/* ===================================
+   SIMPLE SPEECH BUBBLES - NO TEXT
+   =================================== */
 
+/* Remove ONLY the website-generated text */
 #stageScene #speaker,
 #stageScene #speech,
-#stageScene #bubbleBox,
 #stageScene #dialogueReactionText {
   display: none !important;
 }
 
-/* Keep the PNG speech bubbles visible */
-
-#stageScene #speechArt,
-#stageScene #dialogueReactionArt {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+/* Keep the speech bubble visible */
+#stageScene #bubbleWrap,
+#stageScene #bubbleWrap.bubbleWaiting {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 30 !important;
 }
 
-/* Remove the default background from reaction bubbles */
+/* Give the bubble a fixed display area */
+#stageScene .bubbleArtBox {
+  position: relative !important;
+  min-height: 180px !important;
+  height: 180px !important;
+}
 
-#stageScene .dialogueReactionWrap {
+/* Restore the original speech bubble placeholder */
+#stageScene #bubbleBox.bubble {
+  display: block !important;
+  visibility: visible !important;
+
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 180px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: #fff1e4 !important;
+  border-radius: 22px !important;
+}
+
+/* If a custom PNG loads, show it instead */
+#stageScene #bubbleBox.bubble.customArt {
   background: transparent !important;
   box-shadow: none !important;
-  padding: 0 !important;
+}
+
+#stageScene #speechArt:not([hidden]) {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Keep the second bubble in special dual scenes */
+#stageScene #dialogueReactionWrap:not([hidden]) {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-height: 180px !important;
+  background: #fff1e4;
+}
+
+#stageScene #dialogueReactionWrap.customArt {
+  background: transparent !important;
 }
