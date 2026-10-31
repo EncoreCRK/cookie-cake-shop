@@ -1,0 +1,50 @@
+/* Display speech art with text ALREADY embedded in the PNG. Add this stylesheet AFTER game.css and dialogue-pages.css. Leaves your background, reception and customer positions untouched. */
+#stageScene .bubbleArtBox {
+  position: relative;
+  width: 100%;
+  height: clamp(110px, 21vw, 245px) !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+#stageScene #speechArt.bubbleArt {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+#stageScene #speechArt[hidden] {
+  display: none !important;
+}
+#stageScene #bubbleBox,
+#stageScene #speaker,
+#stageScene #speech {
+  display: none !important;
+}
+/* Pure Vanilla and Shadow Milk can have two ready-made speech PNGs. */
+#stageScene .dialogueReactionWrap {
+  background: transparent !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  height: clamp(110px, 21vw, 245px) !important;
+  box-shadow: none !important;
+}
+#stageScene .dialogueReactionWrap p {
+  display: none !important;
+}
+#stageScene .dialogueReactionArt {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+@media (max-width: 760px) {
+  #stageScene .bubbleArtBox {
+    height: clamp(90px, 28vw, 160px) !important;
+  }
+  #stageScene .dialogueReactionWrap {
+    height: clamp(90px, 28vw, 160px) !important;
+  }
+}
