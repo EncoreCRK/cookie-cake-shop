@@ -502,8 +502,8 @@ button:disabled{
   display: block !important;
   visibility: visible !important;
   opacity: 1 !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 200% !important;
+  height: 200% !important;
   object-fit: contain !important;
 }
 
