@@ -243,7 +243,9 @@ function showOrders() {
     title.textContent = o.customer_name;
     card.append(title);
     const characterSprite =
-      characterAssets[o.customer_code]?.sprite || o.portrait_path;
+      window.CAKE_DIALOGUE_PAGES?.customers?.[o.customer_code]?.[0]?.sprite ||
+      window.CAKE_SCENE_ASSETS?.characters?.[o.customer_code]?.sprite ||
+      o.portrait_path;
     if (characterSprite) {
       const img = document.createElement("img");
       setImage(img, characterSprite);
