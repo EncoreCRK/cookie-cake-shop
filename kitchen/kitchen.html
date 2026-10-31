@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cookie Cake Shop | Kitchen</title>
+  <link rel="stylesheet" href="kitchen.css">
+</head>
+<body>
+  <main class="kitchen-shell">
+    <header class="topbar">
+      <a href="game.html" class="back">← Back to the Bakery</a>
+      <strong>🍰 Cookie Cake Shop — Kitchen</strong>
+      <a href="shop.html">Toppings Shop</a>
+    </header>
+    <div class="heading">
+      <div><small class="eyebrow">CREATE YOUR MASTERPIECE</small><h1 id="customerName">Loading your customer's order...</h1><p id="orderSummary">Your selected customer's order appears here.</p></div>
+      <span id="saveState" class="save-state" role="status">Loading…</span>
+    </div>
+    <section id="notice" role="alert" aria-live="polite" hidden></section>
+    <div class="workspace">
+      <aside class="side">
+        <section class="card">
+          <h2>1. Cake foundation</h2>
+          <label for="flavor">Frosting flavor</label>
+          <select id="flavor"><option value="strawberry">Strawberry</option><option value="lemon">Lemon</option><option value="milky">Milky</option><option value="chocolate">Chocolate</option><option value="blueberry">Blueberry</option></select>
+          <div id="flavorPreview" class="flavor-preview"><img id="flavorPicture" src="/assets/frostings/strawberry.png" alt="Selected frosting artwork" onerror="this.hidden=true"><span id="flavorName">Strawberry frosting</span></div>
+          <label for="layers">Cake layers</label>
+          <div class="layers-pills" id="layerOptions">
+            <button type="button" data-layers="1"><img src="/assets/layers/1.png" alt="" onerror="this.hidden=true"><span>1 layer</span></button><button type="button" data-layers="2"><img src="/assets/layers/2.png" alt="" onerror="this.hidden=true"><span>2 layers</span></button><button type="button" data-layers="3"><img src="/assets/layers/3.png" alt="" onerror="this.hidden=true"><span>3 layers</span></button><button type="button" data-layers="4"><img src="/assets/layers/4.png" alt="" onerror="this.hidden=true"><span>4 layers</span></button>
+          </div>
+          <p class="help">Each layer uses one frosting of the selected flavor.</p>
+        </section>
+        <section class="card">
+          <h2>2. Cream bowls</h2>
+          <p class="help">Select a cream, position the piping bag on the cake, then <strong>hold for half a second</strong> to create one dollop. Dragging an existing dollop does not cost extra.</p>
+          <div class="cream-grid" id="creamChoices"></div>
+        </section>
+        <section class="card">
+          <h2>3. Your purchased toppings</h2>
+          <p class="help">Only approved toppings appear here. Select one, then tap the cake to add it. Drag to move.</p>
+          <div id="toppingChoices" class="topping-grid"></div>
+          <a class="shop-link" href="shop.html">Need more? Visit the Toppings Shop</a>
+        </section>
+      </aside>
+      <div class="editor-column">
+        <section class="editor card">
+          <div class="editor-head"><h2>Decorating Table</h2><span class="mini-label" id="modeLabel">Select cream or a topping</span></div>
+          <div id="cakeStage" aria-label="Interactive cake decorating canvas. Use the controls to choose and place toppings, or hold to pipe cream."></div>
+          <div class="toolbar">
+            <button type="button" id="selectMode">↖ Move decorations</button>
+            <button type="button" id="rotateLeft">↶ Rotate</button>
+            <button type="button" id="rotateRight">↷ Rotate</button>
+            <button type="button" id="removeSelected">✕ Remove selected</button>
+            <button type="button" id="undo">↩ Undo last</button>
+          </div>
+          <p class="help">The table works on phones and computers. Tap a decoration to select it, then drag to reposition it. A selected item has a dotted outline.</p>
+        </section>
+        <section class="card summary-card">
+          <div><h2>Your ingredient budget</h2><div id="frostingUsage"></div><div id="toppingUsage"></div></div>
+          <div class="actions">
+            <button id="saveBtn" type="button">Save draft</button>
+            <button id="submitBtn" type="button" class="primary">Submit finished cake</button>
+          </div>
+          <p class="help">Inventory isn't consumed while editing. It is deducted exactly once when you submit the cake. A submitted cake cannot be edited again.</p>
+        </section>
+        <section class="card review-card" id="reviewCard" hidden>
+          <h2>Customer's review</h2>
+          <div id="starResult" class="stars"></div>
+          <img id="reviewArt" alt="Customer review card illustration" hidden>
+          <p id="reviewText"></p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script src="config.js"></script>
+  <script src="https://unpkg.com/konva@10/konva.min.js"></script>
+  <script type="module" src="kitchen.js"></script>
+</body>
+</html>
