@@ -1,0 +1,69 @@
+/* COOKIE CAKE SHOP: text is already baked into each dialogue PNG. Load AFTER game.css, dialogue-pages.css, and any older bubble styles. Does NOT modify background, reception or character sizes/positions. */
+
+/* The art needs its OWN height after hiding the text-backed box. */
+#stageScene .bubbleWrap {
+  z-index: 9 !important;
+}
+#stageScene .bubbleArtBox {
+  position: relative !important;
+  width: 100% !important;
+  height: clamp(145px, 25vw, 280px) !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+#stageScene #speechArt.bubbleArt {
+  position: absolute !important;
+  display: block !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  opacity: 1 !important;
+  z-index: 1 !important;
+}
+/* If an image URL is missing, respect JS's hidden state. */
+#stageScene #speechArt[hidden] {
+  display: none !important;
+}
+/* The website must not draw text or another bubble under the PNG. */
+#stageScene #bubbleBox,
+#stageScene #speaker,
+#stageScene #speech {
+  display: none !important;
+}
+
+/* Independent, text-baked reaction bubble in the SM/PV two-character scenes. */
+#stageScene .dialogueReactionWrap {
+  height: clamp(145px, 25vw, 280px) !important;
+  min-height: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+#stageScene #dialogueReactionArt {
+  position: absolute !important;
+  display: block !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+#stageScene #dialogueReactionArt[hidden] {
+  display: none !important;
+}
+#stageScene #dialogueReactionText {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  #stageScene .bubbleArtBox,
+  #stageScene .dialogueReactionWrap {
+    height: clamp(125px, 29vw, 190px) !important;
+  }
+}
