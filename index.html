@@ -3,12 +3,17 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cookie Cake Shop • Bakery Control</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="admin/styles.css">
 </head>
 <body>
 <div class="admin-layout">
   <aside class="sidebar">
-    <div class="logo"><span class="logo-icon">🍰</span><div><small>COOKIE CAKE SHOP</small><strong>Bakery Control</strong></div></div>
+    <div class="logo"><span class="logo-icon">🍰</span>
+      <div>
+        <small>COOKIE CAKE SHOP</small>
+        <strong>Bakery Control</strong>
+      </div>
+    </div>
     <div class="sidebar-label">CONTROL ROOM</div>
     <nav id="tabs" aria-label="Administrator sections">
       <button class="navitem active" type="button" data-tab="overview">✦ <span>Overview</span></button>
@@ -18,62 +23,278 @@
       <button class="navitem" type="button" data-tab="reviews">★ <span>Review Cards</span></button>
       <button class="navitem" type="button" data-tab="purchases">🂱 <span>Tarot Purchases</span></button>
     </nav>
-    <div class="sidebar-foot"><a href="game.html">↗ View Bakery</a><a href="admin-week.html">↗ Weekly Editor</a></div>
+    <div class="sidebar-foot">
+      <a href="game/game.html">↗ View Bakery</a>
+      <a href="admin/admin-week.html">↗ Weekly Editor</a>
+    </div>
   </aside>
   <div class="work-area">
-    <header class="masthead"><div><span class="micro">ADMINISTRATION</span><h1 id="currentHeading">Bakery Overview</h1></div><div class="account"><span id="welcome">Administrator access</span><button type="button" id="signOut" class="ghost" hidden>Sign out</button></div></header>
+    <header class="masthead">
+      <div>
+        <span class="micro">ADMINISTRATION</span>
+        <h1 id="currentHeading">Bakery Overview</h1>
+      </div>
+      <div class="account">
+        <span id="welcome">Administrator access</span>
+        <button type="button" id="signOut" class="ghost" hidden>Sign out</button>
+      </div>
+    </header>
     <main>
       <section id="login" class="glass login-panel">
-        <div class="welcome-mark">✦</div><h2>Welcome back, Baker</h2><p>Sign in with your approved administrator account to manage the shop.</p>
-        <form id="loginForm" class="form-stack"><label>Email<input type="email" id="loginEmail" autocomplete="username" required></label><label>Password<input type="password" id="loginPassword" autocomplete="current-password" required></label><button type="submit" class="primary">Enter Control Room</button></form>
+        <div class="welcome-mark">✦</div>
+        <h2>Welcome back, Baker</h2>
+        <p>Sign in with your approved administrator account to manage the shop.</p>
+        <form id="loginForm" class="form-stack">
+          <label>Email<input type="email" id="loginEmail" autocomplete="username" required></label>
+          <label>Password<input type="password" id="loginPassword" autocomplete="current-password" required></label>
+          <button type="submit" class="primary">Enter Control Room</button>
+        </form>
       </section>
       <div id="dashboard" hidden>
         <section class="tab" id="overview">
           <p class="intro">Everything you need to keep your bakery running, in one place.</p>
-          <div class="statgrid"><article class="glass stat"><span>Community members</span><b id="statMembers">—</b><small>Approved & inactive</small></article><article class="glass stat"><span>Active members</span><b id="statActive">—</b><small>Can access the game</small></article><article class="glass stat"><span>Awaiting Tarot approval</span><b id="statPending">—</b><small>Purchase requests</small></article><article class="glass stat"><span>Tarots awaiting deduction</span><b id="statTarots">—</b><small>Approved purchases</small></article></div>
+          <div class="statgrid">
+            <article class="glass stat">
+              <span>Community members</span>
+              <b id="statMembers">—</b>
+              <small>Approved & inactive</small>
+            </article>
+            <article class="glass stat">
+              <span>Active members</span>
+              <b id="statActive">—</b>
+              <small>Can access the game</small>
+            </article>
+            <article class="glass stat">
+              <span>Awaiting Tarot approval</span>
+              <b id="statPending">—</b>
+              <small>Purchase requests</small>
+            </article>
+            <article class="glass stat">
+              <span>Tarots awaiting deduction</span>
+              <b id="statTarots">—</b>
+              <small>Approved purchases</small>
+            </article>
+          </div>
           <div class="two-col">
-            <article class="glass card"><span class="micro">QUICK ACTIONS</span><h2>Today at the bakery</h2><div class="quick"><button class="secondary" data-go="members">＋ Add a member</button><button class="secondary" data-go="inventory">＋ Grant frosting</button><button class="secondary" data-go="customers">✎ Edit an order</button><button class="secondary" data-go="purchases">🂱 Review spending</button></div></article>
-            <article class="glass card"><span class="micro">THIS WEEK</span><h2 id="weekPair">Current customers</h2><p id="weekInfo" class="muted">Loading weekly orders…</p><p class="muted small">Recurring order edits affect future weeks. Use the weekly override for the active week.</p><a href="admin-week.html" class="button-link">Open weekly order editor</a></article>
+            <article class="glass card">
+              <span class="micro">QUICK ACTIONS</span>
+              <h2>Today at the bakery</h2>
+              <div class="quick">
+                <button class="secondary" data-go="members">＋ Add a member</button>
+                <button class="secondary" data-go="inventory">＋ Grant frosting</button>
+                <button class="secondary" data-go="customers">✎ Edit an order</button>
+                <button class="secondary" data-go="purchases">🂱 Review spending</button>
+              </div></article>
+            <article class="glass card">
+              <span class="micro">THIS WEEK</span>
+              <h2 id="weekPair">Current customers</h2>
+              <p id="weekInfo" class="muted">Loading weekly orders…</p>
+              <p class="muted small">Recurring order edits affect future weeks. Use the weekly override for the active week.</p>
+              <a href="admin/admin-week.html" class="button-link">Open weekly order editor</a>
+            </article>
           </div>
         </section>
 
         <section class="tab" id="members" hidden>
-          <div class="section-heading"><div><h2>Community Members</h2><p>Invite members, rename their community profiles, or revoke access.</p></div></div>
+          <div class="section-heading">
+            <div>
+              <h2>Community Members</h2>
+              <p>Invite members, rename their community profiles, or revoke access.</p>
+            </div>
+          </div>
           <div class="two-col member-layout">
-            <article class="glass card"><span class="micro">NEW ACCOUNT</span><h3>Create member</h3><form id="createForm" class="form-stack"><label>Community username<input id="newUsername" maxlength="80" placeholder="Member's Circle username" required></label><label>Login email<input id="newEmail" type="email" placeholder="member@example.com" required></label><label>Temporary password<input id="newPassword" type="password" minlength="12" autocomplete="new-password" required></label><button class="primary" type="submit">Create account</button></form></article>
-            <article class="glass card"><span class="micro">EXISTING MEMBERS</span><h3>Find a member</h3><label>Search by username<input id="memberSearch" placeholder="Search community members…"></label><div class="member-list" id="membersList"></div><div id="memberEditor" class="editor-panel" hidden><h3>Edit selected member</h3><form id="memberForm" class="form-stack"><label>Community username<input id="memberNameEdit" maxlength="80" required></label><label class="inline-check"><input id="memberApprovedEdit" type="checkbox"> Account enabled</label><div class="action-row"><button class="primary" type="submit">Save member</button><button class="ghost" type="button" id="cancelMember">Cancel</button></div></form></div></article>
+            <article class="glass card">
+              <span class="micro">NEW ACCOUNT</span>
+              <h3>Create member</h3>
+              <form id="createForm" class="form-stack">
+                <label>Community username<input id="newUsername" maxlength="80" placeholder="Member's Circle username" required></label>
+                <label>Login email<input id="newEmail" type="email" placeholder="member@example.com" required></label>
+                <label>Temporary password<input id="newPassword" type="password" minlength="12" autocomplete="new-password" required></label>
+                <button class="primary" type="submit">Create account</button>
+              </form>
+            </article>
+            <article class="glass card">
+              <span class="micro">EXISTING MEMBERS</span>
+              <h3>Find a member</h3>
+              <label>Search by username<input id="memberSearch" placeholder="Search community members…">
+              </label>
+              <div class="member-list" id="membersList"></div>
+              <div id="memberEditor" class="editor-panel" hidden>
+                <h3>Edit selected member</h3>
+                <form id="memberForm" class="form-stack">
+                  <label>Community username<input id="memberNameEdit" maxlength="80" required></label>
+                  <label class="inline-check">
+                    <input id="memberApprovedEdit" type="checkbox"> Account enabled
+                  </label>
+                  <div class="action-row">
+                    <button class="primary" type="submit">Save member</button>
+                    <button class="ghost" type="button" id="cancelMember">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </article>
           </div>
         </section>
 
         <section class="tab" id="inventory" hidden>
-          <div class="section-heading"><div><h2>Frosting Inventory</h2><p>Adjust frosting units found in the community. Every change is recorded.</p></div></div>
-          <article class="glass card"><label>Choose member<select id="inventoryMember"></select></label><div id="inventoryList" class="flavor-grid"></div></article>
-          <article class="glass card"><h3>Adjust a frosting balance</h3><form id="inventoryForm" class="form-grid"><label>Flavor<select id="inventoryFlavor"><option value="strawberry">🍓 Strawberry</option><option value="lemon">🍋 Lemon</option><option value="milky">🥛 Milky</option><option value="chocolate">🍫 Chocolate</option><option value="blueberry">🫐 Blueberry</option></select></label><label>Units to add or remove<input id="inventoryDelta" type="number" min="-10000" max="10000" step="1" value="1" required></label><label class="full">Reason<input id="inventoryReason" value="Found frosting in community" required></label><button type="submit" class="primary full">Apply inventory adjustment</button></form></article>
+          <div class="section-heading">
+            <div>
+              <h2>Frosting Inventory</h2>
+              <p>Adjust frosting units found in the community. Every change is recorded.</p>
+            </div>
+          </div>
+          <article class="glass card">
+            <label>Choose member
+              <select id="inventoryMember"></select>
+            </label>
+            <div id="inventoryList" class="flavor-grid"></div>
+          </article>
+          <article class="glass card">
+            <h3>Adjust a frosting balance</h3>
+            <form id="inventoryForm" class="form-grid">
+              <label>Flavor
+                <select id="inventoryFlavor">
+                  <option value="strawberry">🔴 Strawberry</option>
+                  <option value="lemon">🟡 Lemon</option>
+                  <option value="milky">⚪ Milky</option>
+                  <option value="chocolate">🟤 Chocolate</option>
+                  <option value="blueberry">🟣 Blueberry</option>
+                </select>
+              </label>
+              <label>Units to add or remove<input id="inventoryDelta" type="number" min="-10000" max="10000" step="1" value="1" required></label>
+              <label class="full">Reason<input id="inventoryReason" value="Found frosting in community" required></label>
+              <button type="submit" class="primary full">Apply inventory adjustment</button>
+            </form>
+          </article>
         </section>
 
         <section class="tab" id="customers" hidden>
-          <div class="section-heading"><div><h2>Customer Studio</h2><p>Edit speech, customer artwork, and recurring order recipes without writing JSON.</p></div></div>
-          <article class="glass card"><label>Choose Cookie<select id="customerSelect"></select></label><div id="customerBadge" class="info-strip"></div></article>
+          <div class="section-heading">
+            <div>
+              <h2>Customer Studio</h2>
+              <p>Edit speech, customer artwork, and recurring order recipes without writing JSON.</p>
+            </div>
+          </div>
+          <article class="glass card">
+            <label>Choose Cookie
+              <select id="customerSelect"></select>
+            </label>
+            <div id="customerBadge" class="info-strip"></div>
+          </article>
           <div class="two-col editor-grid">
-            <article class="glass card"><span class="micro">CUTSCENE EDITOR</span><h3>Dialogue & default artwork</h3><form id="customerForm" class="form-stack"><label>Entrance dialogue <small>One dialogue page per line</small><textarea id="entranceDialogue" rows="7" placeholder="Enter line one…"></textarea></label><label>Order speech bubble text<textarea id="orderDialogue" rows="3" placeholder="I would like a cake…"></textarea></label><label>Default character PNG path<input id="portraitPath" placeholder="/assets/characters/cookie.png"></label><label>Default speech bubble PNG path<input id="speechPath" placeholder="/assets/bubbles/cookie.png"></label><button type="submit" class="primary">Save dialogue & images</button></form><p class="hint">Page-specific pose PNGs are still controlled in <code>dialogue-pages.js</code>; these fields control default fallbacks.</p></article>
-            <article class="glass card"><span class="micro">RECURRING RECIPE</span><h3>Order builder</h3><p class="muted small" id="orderHint">This template is reused when this Cookie returns in the rotation.</p><form id="orderForm" class="form-stack"><div class="two-input"><label>Cake frosting<select id="orderFlavor"></select></label><label>Cake layers<select id="orderLayers"><option value="1">1 layer</option><option value="2">2 layers</option><option value="3">3 layers</option><option value="4">4 layers</option></select></label></div><h4>Required cream dollops</h4><div id="creamFields" class="qty-grid"></div><h4>Required toppings</h4><div id="toppingFields" class="qty-grid"></div><div class="hint">Enter 0 for anything the customer does not require. One frosting is used per layer and per cream dollop when cakes are submitted.</div><button type="submit" class="primary">Save recurring order (future weeks)</button><button type="button" class="secondary" id="applyCurrentWeek">Apply this recipe to the current week</button></form><p class="hint">Current-week overrides are rejected once submitted cakes exist for that order. Shadow Milk's mystery order remains server-generated.</p></article>
+            <article class="glass card">
+              <span class="micro">CUTSCENE EDITOR</span>
+              <h3>Dialogue & default artwork</h3>
+              <form id="customerForm" class="form-stack">
+                <label>Entrance dialogue 
+                  <small>One dialogue page per line</small>
+                  <textarea id="entranceDialogue" rows="7" placeholder="Enter line one…"></textarea>
+                </label>
+                <label>Order speech bubble text
+                  <textarea id="orderDialogue" rows="3" placeholder="I would like a cake…"></textarea>
+                </label>
+                <label>Default character PNG path
+                  <input id="portraitPath" placeholder="/assets/characters/cookie.png"></label>
+                <label>Default speech bubble PNG path<input id="speechPath" placeholder="/assets/bubbles/cookie.png"></label>
+                <button type="submit" class="primary">Save dialogue & images</button>
+              </form>
+              <p class="hint">Page-specific pose PNGs are still controlled in 
+                <code>dialogue-pages.js</code>
+                ; these fields control default fallbacks.
+              </p>
+            </article>
+            <article class="glass card">
+              <span class="micro">RECURRING RECIPE</span>
+              <h3>Order builder</h3>
+              <p class="muted small" id="orderHint">This template is reused when this Cookie returns in the rotation.</p>
+              <form id="orderForm" class="form-stack">
+                <div class="two-input">
+                  <label>Cake frosting
+                    <select id="orderFlavor"></select>
+                  </label>
+                  <label>Cake layers
+                    <select id="orderLayers">
+                      <option value="1">1 layer</option>
+                      <option value="2">2 layers</option>
+                      <option value="3">3 layers</option>
+                      <option value="4">4 layers</option>
+                    </select>
+                  </label>
+                </div>
+                <h4>Required cream dollops</h4>
+                <div id="creamFields" class="qty-grid"></div>
+                <h4>Required toppings</h4>
+                <div id="toppingFields" class="qty-grid"></div>
+                <div class="hint">Enter 0 for anything the customer does not require. One frosting is used per layer and per cream dollop when cakes are submitted.</div>
+                <button type="submit" class="primary">Save recurring order (future weeks)</button>
+                <button type="button" class="secondary" id="applyCurrentWeek">Apply this recipe to the current week</button>
+              </form>
+              <p class="hint">Current-week overrides are rejected once submitted cakes exist for that order. Shadow Milk's mystery order remains server-generated.</p>
+            </article>
           </div>
         </section>
 
         <section class="tab" id="reviews" hidden>
-          <div class="section-heading"><div><h2>Review Cards</h2><p>Give every Cookie a separate response for ratings from 1 to 5 stars.</p></div></div>
-          <article class="glass card review-card"><form id="reviewForm" class="form-stack"><label>Cookie<select id="reviewCustomer"></select></label><div class="rating-pills" id="ratingPills"><button type="button" data-stars="1">★ 1</button><button type="button" data-stars="2">★★ 2</button><button type="button" data-stars="3">★★★ 3</button><button type="button" data-stars="4">★★★★ 4</button><button type="button" data-stars="5">★★★★★ 5</button></div><input type="hidden" id="reviewStars" value="5"><label>Review message<textarea id="reviewText" rows="6" placeholder="Write this Cookie's reaction to the cake…"></textarea></label><label>Rating card PNG path<input id="reviewImage" placeholder="/assets/reviews/customer-5.png"></label><div id="reviewPreview" class="review-preview"><span>Card image preview appears here</span></div><button type="submit" class="primary">Save this review card</button></form></article>
+          <div class="section-heading">
+            <div>
+              <h2>Review Cards</h2>
+              <p>Give every Cookie a separate response for ratings from 1 to 5 stars.</p>
+            </div>
+          </div>
+          <article class="glass card review-card">
+            <form id="reviewForm" class="form-stack">
+              <label>Cookie
+                <select id="reviewCustomer"></select>
+              </label>
+              <div class="rating-pills" id="ratingPills">
+                <button type="button" data-stars="1">★ 1</button>
+                <button type="button" data-stars="2">★★ 2</button>
+                <button type="button" data-stars="3">★★★ 3</button>
+                <button type="button" data-stars="4">★★★★ 4</button>
+                <button type="button" data-stars="5">★★★★★ 5</button>
+              </div>
+              <input type="hidden" id="reviewStars" value="5">
+              <label>Review message
+                <textarea id="reviewText" rows="6" placeholder="Write this Cookie's reaction to the cake…"></textarea>
+              </label>
+              <label>Rating card PNG path<input id="reviewImage" placeholder="/assets/reviews/customer-5.png"></label>
+              <div id="reviewPreview" class="review-preview">
+                <span>Card image preview appears here</span>
+              </div>
+              <button type="submit" class="primary">Save this review card</button>
+            </form>
+          </article>
         </section>
 
         <section class="tab" id="purchases" hidden>
-          <div class="section-heading"><div><h2>Tarot Purchases</h2><p>Approve toppings, then record deductions made in your external community.</p></div></div>
-          <div class="glass card"><div class="filterbar"><label>Status<select id="purchaseFilter"><option value="all">All purchases</option><option value="pending">Pending approval</option><option value="approved">Awaiting deduction</option><option value="deducted">Deducted</option><option value="cancelled">Cancelled</option></select></label><button type="button" class="secondary" id="reloadPurchases">Refresh ledger</button></div><div id="purchasesList" class="purchase-list"></div></div>
+          <div class="section-heading">
+            <div>
+              <h2>Tarot Purchases</h2>
+              <p>Approve toppings, then record deductions made in your external community.</p>
+            </div>
+          </div>
+          <div class="glass card">
+            <div class="filterbar">
+              <label>Status
+                <select id="purchaseFilter">
+                  <option value="all">All purchases</option>
+                  <option value="pending">Pending approval</option>
+                  <option value="approved">Awaiting deduction</option>
+                  <option value="deducted">Deducted</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </label>
+              <button type="button" class="secondary" id="reloadPurchases">Refresh ledger</button>
+            </div>
+            <div id="purchasesList" class="purchase-list"></div>
+          </div>
         </section>
       </div>
       <div id="message" role="status" aria-live="polite"></div>
     </main>
   </div>
 </div>
-<script src="config.js"></script><script type="module" src="app.js"></script>
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
