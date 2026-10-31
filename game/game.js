@@ -267,10 +267,18 @@ function showOrders() {
         .join(", ");
       d.textContent = `${req.flavor || "Not set"} frosting • ${ req.layers || "?" } layers\nCream: ${cream || "None"}\nToppings: ${toppings || "None"}`;
     }
-    card.append(d);
     card.onclick = () => {
       active = o;
-      $("activeCustomer").textContent = `Baking for ${o.customer_name}`;
+
+  // Remember which customer the player selected
+      sessionStorage.setItem(
+        "cake_active_order_id",
+        o.order_id
+      );
+
+      $("activeCustomer").textContent =
+        `Baking for ${o.customer_name}`;
+
       view("locations");
     };
     root.append(card);
@@ -282,14 +290,22 @@ $("switchOrder").onclick = showOrders;
 $("shop").onclick = () => {
   window.location.href = "shop.html";
 };
+
 $("kitchen").onclick = () => {
-  view("locationPreview");
-  $("placeName").textContent = "Kitchen";
-  $("placeTitle").textContent = "Your cake awaits";
-  $("placeIntro").textContent =
-    "The kitchen will let you pick five frosting flavors, 1–4 layers, pipe cream and place purchased toppings. Your chosen customer stays selected.";
-  $("previewContent").replaceChildren();
+  if (!active) {
+    say("Please choose a customer's order first!");
+    return;
+  }
+
+  sessionStorage.setItem(
+    "cake_active_order_id",
+    active.order_id
+  );
+
+  window.location.href =
+    `kitchen/kitchen.html?order_id=${encodeURIComponent(active.order_id)}`;
 };
+
 async function loadShop() {
   try {
     const items = await unwrap(
