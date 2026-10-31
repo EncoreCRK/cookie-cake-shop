@@ -448,3 +448,30 @@ button:disabled{
   height: auto !important;
   object-fit: contain !important;
 }
+
+/* HIDE ALL WEBSITE-GENERATED DIALOGUE TEXT */
+
+#stageScene #speaker,
+#stageScene #speech,
+#stageScene #bubbleBox,
+#stageScene #dialogueReactionText {
+  display: none !important;
+}
+
+/* Keep the PNG speech bubbles visible */
+
+#stageScene #speechArt,
+#stageScene #dialogueReactionArt {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Remove the default background from reaction bubbles */
+
+#stageScene .dialogueReactionWrap {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
