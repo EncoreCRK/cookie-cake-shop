@@ -26,13 +26,28 @@
         return { o, s, main, page };
       });
     }
-    const count = {};
-    return ordinaryFrames.map((item) => {
-      const code = item.o.customer_code;
-      const index = count[code] || 0;
-      count[code] = index + 1;
-      const page = config.customers?.[code]?.[index] || {};
-      return { ...item, main: code, page };
+    // PNG-only dialogue: ONE page for each configured entry.
+    // Discard the old text-driven list, including its automatic final
+    // "I have a cake request for you!" frame.
+    return orders.flatMap((o) => {
+      const pages = config.customers?.[o.customer_code];
+      if (Array.isArray(pages) && pages.length > 0) {
+        return pages.map((page, index) => ({
+          o,
+          s:
+            typeof page.text === "string"
+              ? page.text
+              : o.entrance_dialogue?.[index] || "",
+          main: o.customer_code,
+          page,
+        }));
+      }
+      // Fallback for any Cookie not yet configured with images.
+      const lines =
+        Array.isArray(o.entrance_dialogue) && o.entrance_dialogue.length
+          ? o.entrance_dialogue
+          : [""];
+      return lines.map((s) => ({ o, s, main: o.customer_code, page: {} }));
     });
   }
 
@@ -157,8 +172,9 @@
     const reaction = addReaction();
     if (
       isDuo &&
-      typeof page.reactionText === "string" &&
-      page.reactionText.trim()
+      ((typeof page.reactionBubble === "string" &&
+        page.reactionBubble.trim()) ||
+        (typeof page.reactionText === "string" && page.reactionText.trim()))
     ) {
       reaction.hidden = false;
       reaction.classList.remove("customArt");
@@ -166,7 +182,7 @@
         "bubbleWaiting",
         get("customerWrap").classList.contains("entering")
       );
-      get("dialogueReactionText").textContent = page.reactionText;
+      get("dialogueReactionText").textContent = page.reactionText || "";
       const otherArt = characterAssets[page.companion] || {};
       loadWithFallback(
         get("dialogueReactionArt"),
