@@ -1,0 +1,354 @@
+:root {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #fff1ec;
+  background: #19121f;
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at 70% 0%, #4a2a50, #1a1320 68%);
+  min-height: 100vh;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+a {
+  color: #ffd1e2;
+}
+.kitchen-shell {
+  max-width: 1320px;
+  margin: auto;
+  padding: 20px;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 0.92rem;
+  padding: 7px 0 22px;
+  border-bottom: 1px solid #785777;
+}
+.topbar strong {
+  font-size: 1.05rem;
+}
+.topbar a {
+  white-space: nowrap;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 25px 0;
+  flex-wrap: wrap;
+}
+h1 {
+  font-size: clamp(1.5rem, 3.4vw, 2.2rem);
+  margin: 4px 0;
+}
+h2 {
+  font-size: 1.05rem;
+  margin: 0 0 14px;
+}
+p {
+  line-height: 1.5;
+  color: #e5d7e3;
+}
+.heading p {
+  margin: 6px 0 0;
+}
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  font-weight: 800;
+  color: #eabbd2;
+}
+.save-state {
+  border: 1px solid #876486;
+  border-radius: 40px;
+  padding: 9px 14px;
+  color: #fbdde9;
+  font-size: 0.85rem;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.side,
+.editor-column {
+  display: grid;
+  gap: 16px;
+}
+.card {
+  background: #2c2033;
+  border: 1px solid #684e70;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 15px 38px #10091b25;
+}
+.card label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 650;
+  margin: 14px 0 8px;
+}
+select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid #876487;
+  border-radius: 9px;
+  background: #442f4b;
+  color: white;
+}
+.help {
+  font-size: 0.8rem;
+  color: #cfbccc;
+  margin: 10px 0 0;
+}
+.layers-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+.layers-pills button {
+  padding: 7px 3px;
+  min-height: 57px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  background: #513958;
+  border: 1px solid #8d698a;
+  color: white;
+  border-radius: 9px;
+}
+.layers-pills button.chosen,
+.cream-button.chosen,
+.topping-button.chosen,
+#selectMode.chosen {
+  border-color: #ffe4ec;
+  background: #8e4e74;
+  box-shadow: 0 0 0 2px #e3b1ca50;
+}
+.cream-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.cream-button,
+.topping-button {
+  border: 1px solid #856588;
+  border-radius: 11px;
+  color: #fff2f4;
+  background: #47344d;
+  padding: 9px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-align: left;
+  min-height: 53px;
+  font-size: 0.8rem;
+}
+.cream-button .swatch {
+  width: 19px;
+  height: 19px;
+  border: 2px solid #ffffff70;
+  border-radius: 50%;
+  flex: none;
+}
+.cream-button .qty,
+.topping-button .qty {
+  font-size: 0.7rem;
+  color: #eac7d7;
+  display: block;
+}
+.topping-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.topping-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+.topping-button img {
+  width: 55px;
+  height: 52px;
+  object-fit: contain;
+}
+.topping-button:disabled,
+.cream-button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+.shop-link {
+  font-size: 0.82rem;
+  display: inline-block;
+  margin-top: 12px;
+}
+.editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mini-label {
+  font-size: 0.78rem;
+  color: #f6cbdc;
+}
+#cakeStage {
+  width: 100%;
+  border-radius: 13px;
+  overflow: hidden;
+  background: linear-gradient(120deg, #8b5c55, #bb9182);
+  touch-action: none;
+  min-height: 170px;
+}
+#cakeStage canvas {
+  touch-action: none;
+}
+.toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 13px;
+}
+.toolbar button,
+.actions button {
+  padding: 10px 13px;
+  background: #533b58;
+  border: 1px solid #85678b;
+  border-radius: 10px;
+  color: white;
+  font-weight: 650;
+  font-size: 0.8rem;
+}
+.toolbar button:disabled,
+.actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.actions button.primary {
+  background: #f2b2d0;
+  border-color: #f2b2d0;
+  color: #32152d;
+}
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.usage-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.83rem;
+  padding: 5px 0;
+  border-bottom: 1px solid #ffffff17;
+  gap: 10px;
+}
+.usage-row.over {
+  color: #ffadbc;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#notice {
+  background: #5e3347;
+  border: 1px solid #ca879a;
+  color: #ffecf2;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  white-space: pre-wrap;
+}
+.review-card {
+  background: linear-gradient(135deg, #59354b, #34253a);
+}
+.stars {
+  color: #f8d58a;
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+}
+.review-card img {
+  max-width: 280px;
+  max-height: 230px;
+  object-fit: contain;
+  display: block;
+  margin: 10px 0;
+}
+@media (max-width: 890px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .side .card:last-child {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 620px) {
+  .kitchen-shell {
+    padding: 12px;
+  }
+  .topbar {
+    gap: 7px;
+    font-size: 0.75rem;
+  }
+  .side {
+    grid-template-columns: 1fr;
+  }
+  .side .card:last-child {
+    grid-column: auto;
+  }
+  .card {
+    padding: 13px;
+  }
+  .toolbar button {
+    flex: 1 1 120px;
+  }
+  .actions button {
+    flex: 1 1 120px;
+  }
+}
+
+.flavor-preview {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border-radius: 10px;
+  padding: 9px;
+  background: #4b3552;
+  margin-top: 8px;
+  font-size: 0.83rem;
+}
+.flavor-preview img {
+  max-width: 60px;
+  height: 50px;
+  object-fit: contain;
+}
+.layers-pills img {
+  max-width: 48px;
+  height: 36px;
+  object-fit: contain;
+        }
