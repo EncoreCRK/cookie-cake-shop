@@ -466,7 +466,7 @@ button:disabled{
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
-  z-index: 30 !important;
+  z-index: 20 !important;
 }
 
 /* Give the bubble a fixed display area */
