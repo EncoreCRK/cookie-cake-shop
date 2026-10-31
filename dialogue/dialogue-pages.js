@@ -8,14 +8,14 @@
   window.CAKE_DIALOGUE_PAGES = {
     customers: {
       silent_salt: [
-        { sprite: pose("silent_salt", 1), bubble: bubble("silent_salt") },
-        { sprite: pose("silent_salt", 2), bubble: bubble("silent_salt") },
-        { sprite: pose("silent_salt", 3), bubble: bubble("silent_salt") },
+        { sprite: pose("silent_salt", 1), bubble: bubble("salt1") },
+        { sprite: pose("silent_salt", 2), bubble: bubble("salt2") },
+        { sprite: pose("silent_salt", 3), bubble: bubble("salt3") },
       ],
       white_lily: [
-        { sprite: pose("white_lily", 1), bubble: bubble("white_lily") },
-        { sprite: pose("white_lily", 2), bubble: bubble("white_lily") },
-        { sprite: pose("white_lily", 3), bubble: bubble("white_lily") },
+        { sprite: pose("white_lily", 1), bubble: bubble("lily1") },
+        { sprite: pose("white_lily", 2), bubble: bubble("lily2") },
+        { sprite: pose("white_lily", 3), bubble: bubble("lily3") },
       ],
       mystic_flour: [
         { sprite: pose("mystic_flour", 1) },
