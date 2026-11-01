@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#03102d">
-  <title>Cookie Cake Shop | Azure Kitchen</title>
+  <title>Cookie Cake Shop | Kitchen</title>
   <link rel="stylesheet" href="/kitchen/kitchen.css?v=7">
 </head>
 <body>
   <main class="kitchen-shell">
     <header class="topbar">
       <a href="/game/game.html" id="backBakery" class="navlink">← Bakery</a>
-      <div class="brand"><span class="brand-star">✦</span> COOKIE CAKE SHOP <span class="brand-detail">/ KITCHEN</span></div>
+      <div class="brand"><span class="brand-star">✦</span> ENCORE CAKE SHOP <span class="brand-detail">/ KITCHEN</span></div>
       <a href="/shop/shop.html" id="shopLink" class="navlink">Toppings Shop ↗</a>
     </header>
     <section class="hero">
       <div>
-        <div class="eyebrow">✦ THE AZURE PATISSERIE ✦</div>
+        <div class="eyebrow">✦ THE PATISSERIE ✦</div>
         <h1 id="customerName">Preparing your cake studio...</h1>
         <p id="orderSummary">Choose a cake, add cream and toppings, and create something unforgettable.</p>
       </div>
@@ -29,26 +29,53 @@
           <div class="section-head"><span class="step">01</span><h2>Cake foundation</h2></div>
           <label for="flavor">Cake frosting</label>
           <select id="flavor">
-            <option value="strawberry">Strawberry</option><option value="lemon">Lemon</option>
-            <option value="milky">Milky</option><option value="chocolate">Chocolate</option>
+            <option value="strawberry">Strawberry</option>
+            <option value="lemon">Lemon</option>
+            <option value="milky">Milky</option>
+            <option value="chocolate">Chocolate</option>
             <option value="blueberry">Blueberry</option>
           </select>
           <p class="small">Choose a flavor to update all four layer previews automatically.</p>
           <div class="layer-grid" id="layerOptions">
-            <button type="button" data-layers="1"><span class="layer-preview"><img alt="One cake layer" hidden></span><span>1 layer</span></button>
-            <button type="button" data-layers="2"><span class="layer-preview"><img alt="Two cake layers" hidden></span><span>2 layers</span></button>
-            <button type="button" data-layers="3"><span class="layer-preview"><img alt="Three cake layers" hidden></span><span>3 layers</span></button>
-            <button type="button" data-layers="4"><span class="layer-preview"><img alt="Four cake layers" hidden></span><span>4 layers</span></button>
+            <button type="button" data-layers="1">
+              <span class="layer-preview">
+                <img alt="One cake layer" hidden>
+              </span>
+              <span>1 layer</span>
+            </button>
+            <button type="button" data-layers="2">
+              <span class="layer-preview">
+                <img alt="Two cake layers" hidden>
+              </span>
+              <span>2 layers</span>
+            </button>
+            <button type="button" data-layers="3">
+              <span class="layer-preview">
+                <img alt="Three cake layers" hidden>
+              </span>
+              <span>3 layers</span>
+            </button>
+            <button type="button" data-layers="4">
+              <span class="layer-preview">
+                <img alt="Four cake layers" hidden>
+              </span>
+              <span>4 layers</span>
+            </button>
           </div>
           <p class="tip">Every layer consumes one unit of the chosen frosting on submission.</p>
         </section>
         <section class="panel">
-          <div class="section-head"><span class="step">02</span><h2>Five cream bowls</h2></div>
+          <div class="section-head">
+            <span class="step">02</span>
+            <h2>Five cream bowls</h2>
+          </div>
           <p class="small">Tap a bowl on the table or here. Move your pointer or finger over the cake, then hold to pipe. Release to finish the dollop.</p>
           <div id="creamChoices" class="bowl-controls"></div>
         </section>
         <section class="panel">
-          <div class="section-head"><span class="step">03</span><h2>Your toppings</h2></div>
+          <div class="section-head"><span class="step">03</span>
+            <h2>Your toppings</h2>
+          </div>
           <p class="small">Approved toppings only. Choose an item, tap the cake, then move, resize or rotate it.</p>
           <div id="toppingChoices" class="topping-grid"></div>
           <a href="/shop/shop.html" class="textlink" id="moreToppings">Get more toppings ↗</a>
@@ -56,10 +83,16 @@
       </aside>
       <div class="studio-column">
         <section class="panel studio">
-          <div class="studio-title"><div><div class="eyebrow">✧ INTERACTIVE CAKE EDITOR</div><h2>Decorating Table</h2></div><span id="modeLabel" class="mode-label">Move decorations</span></div>
+          <div class="studio-title">
+            <div>
+              <div class="eyebrow">✧ INTERACTIVE CAKE EDITOR</div>
+              <h2>Decorating Table</h2>
+            </div>
+            <span id="modeLabel" class="mode-label">Move decorations</span>
+          </div>
           <div class="canvas-frame">
             <canvas id="cakeCanvas" width="960" height="620" aria-label="Cake editor. Select a cream bowl and hold on the cake to pipe, or select a topping then tap to place it. Drag decorations to reposition them."></canvas>
-            <div class="canvas-corner">✦ THE AZURE DECK ✦</div>
+            <div class="canvas-corner">✦ The beast watches you while you decorate ✦</div>
           </div>
           <div class="toolbars">
             <div class="toolbar" aria-label="Decoration controls">
@@ -82,9 +115,18 @@
           <p class="small">Touch-friendly editor: drag decorations to move them, use Size and Rotate to adjust. The cake layers themselves stay fixed. Pinch on the canvas or use Zoom controls.</p>
         </section>
         <section class="panel summary">
-          <div class="section-head"><span class="step">04</span><h2>Ingredient budget</h2></div>
-          <div class="stock-columns"><div id="frostingUsage"></div><div id="toppingUsage"></div></div>
-          <div class="footer-actions"><button id="saveBtn" type="button">Save cake draft</button><button class="primary" id="submitBtn" type="button">Submit finished cake ✦</button></div>
+          <div class="section-head">
+            <span class="step">04</span>
+            <h2>Ingredient budget</h2>
+          </div>
+          <div class="stock-columns">
+            <div id="frostingUsage"></div>
+            <div id="toppingUsage"></div>
+          </div>
+          <div class="footer-actions">
+            <button id="saveBtn" type="button">Save cake draft</button>
+            <button class="primary" id="submitBtn" type="button">Submit finished cake ✦</button>
+          </div>
           <p class="small">Moving and resizing decorations costs nothing. Inventory is deducted only once when you submit the cake.</p>
         </section>
         <section class="panel review" id="reviewCard" hidden>
