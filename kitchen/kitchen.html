@@ -9,12 +9,15 @@
 <body>
   <main class="kitchen-shell">
     <header class="topbar">
-      <a href="game.html" class="back">← Back to the Bakery</a>
+      <a href="../game.html" class="back">← Back to the Bakery</a>
       <strong>🍰 Cookie Cake Shop — Kitchen</strong>
-      <a href="shop.html">Toppings Shop</a>
+      <a href="../shop.html">Toppings Shop</a>
     </header>
     <div class="heading">
-      <div><small class="eyebrow">CREATE YOUR MASTERPIECE</small><h1 id="customerName">Loading your customer's order...</h1><p id="orderSummary">Your selected customer's order appears here.</p></div>
+      <div>
+        <small class="eyebrow">CREATE YOUR MASTERPIECE</small>
+        <h1 id="customerName">Loading your customer's order...</h1>
+        <p id="orderSummary">Your selected customer's order appears here.</p></div>
       <span id="saveState" class="save-state" role="status">Loading…</span>
     </div>
     <section id="notice" role="alert" aria-live="polite" hidden></section>
@@ -23,8 +26,17 @@
         <section class="card">
           <h2>1. Cake foundation</h2>
           <label for="flavor">Frosting flavor</label>
-          <select id="flavor"><option value="strawberry">Strawberry</option><option value="lemon">Lemon</option><option value="milky">Milky</option><option value="chocolate">Chocolate</option><option value="blueberry">Blueberry</option></select>
-          <div id="flavorPreview" class="flavor-preview"><img id="flavorPicture" src="/assets/frostings/strawberry.png" alt="Selected frosting artwork" onerror="this.hidden=true"><span id="flavorName">Strawberry frosting</span></div>
+          <select id="flavor">
+            <option value="strawberry">Strawberry</option>
+            <option value="lemon">Lemon</option>
+            <option value="milky">Milky</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="blueberry">Blueberry</option>
+          </select>
+          <div id="flavorPreview" class="flavor-preview">
+            <img id="flavorPicture" src="/assets/frostings/strawberry.png" alt="Selected frosting artwork" onerror="this.hidden=true">
+            <span id="flavorName">Strawberry frosting</span>
+          </div>
           <label for="layers">Cake layers</label>
           <div class="layers-pills" id="layerOptions">
             <button type="button" data-layers="1">
@@ -48,19 +60,22 @@
         </section>
         <section class="card">
           <h2>2. Cream bowls</h2>
-          <p class="help">Select a cream, position the piping bag on the cake, then <strong>hold for half a second</strong> to create one dollop. Dragging an existing dollop does not cost extra.</p>
+          <p class="help">Select a cream, position the piping bag on the cake, then 
+            <strong>hold for half a second</strong>
+            to create one dollop. Dragging an existing dollop does not cost extra.</p>
           <div class="cream-grid" id="creamChoices"></div>
         </section>
         <section class="card">
           <h2>3. Your purchased toppings</h2>
           <p class="help">Only approved toppings appear here. Select one, then tap the cake to add it. Drag to move.</p>
           <div id="toppingChoices" class="topping-grid"></div>
-          <a class="shop-link" href="shop.html">Need more? Visit the Toppings Shop</a>
+          <a class="shop-link" href="../shop.html">Need more? Visit the Toppings Shop</a>
         </section>
       </aside>
       <div class="editor-column">
         <section class="editor card">
-          <div class="editor-head"><h2>Decorating Table</h2><span class="mini-label" id="modeLabel">Select cream or a topping</span></div>
+          <div class="editor-head">
+            <h2>Decorating Table</h2><span class="mini-label" id="modeLabel">Select cream or a topping</span></div>
           <div id="cakeStage" aria-label="Interactive cake decorating canvas. Use the controls to choose and place toppings, or hold to pipe cream."></div>
           <div class="toolbar">
             <button type="button" id="selectMode">↖ Move decorations</button>
