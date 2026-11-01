@@ -1,18 +1,3 @@
-/*
-  CAKE SHOP — ART ASSET MAP
-  Edit ONLY the paths below to match your PNG names. Every path begins with /,
-  because this site is deployed at the domain root with a /kitchen/ folder.
-
-  Suggested files:
-    /assets/cake-layers/lemon/1.png ... 4.png
-    /assets/cream-bowls/lemon.png
-    /assets/cream-dollops/lemon.png
-    /assets/toppings/crimson_cherries.png
-    /assets/kitchen/table.png (optional)
-
-  Images are not included in this update. Missing images display a simple
-  drawn placeholder so you can test the editor before uploading your PNGs.
-*/
 (function () {
   const flavors = ['strawberry','lemon','milky','chocolate','blueberry'];
   const layers = {};
@@ -20,13 +5,13 @@
   const dollops = {};
   for (const flavor of flavors) {
     layers[flavor] = {
-      1: `/assets/cake-layers/${flavor}/1.png`,
-      2: `/assets/cake-layers/${flavor}/2.png`,
-      3: `/assets/cake-layers/${flavor}/3.png`,
-      4: `/assets/cake-layers/${flavor}/4.png`
+      1: `/assets/layers/${flavor}/1.png`,
+      2: `/assets/layers/${flavor}/2.png`,
+      3: `/assets/layers/${flavor}/3.png`,
+      4: `/assets/layers/${flavor}/4.png`
     };
-    bowls[flavor] = `/assets/cream-bowls/${flavor}.png`;
-    dollops[flavor] = `/assets/cream-dollops/${flavor}.png`;
+    bowls[flavor] = `/assets/bowls/${flavor}.png`;
+    dollops[flavor] = `/assets/dollops/${flavor}.png`;
   }
   window.CAKE_KITCHEN_ASSETS = {
     layers,
@@ -49,9 +34,9 @@
     // Position of the UNEDITABLE cake image on the logical 960x620 tabletop.
     cakeImage: { x: 270, y: 122, width: 420, height: 414 },
     // Allowed placement region for toppings/cream; adjust if your cake PNG differs.
-    decorationArea: { cx: 480, cy: 322, rx: 196, ry: 139 },
+    decorationArea: { cx: 500, cy: 344, rx: 200, ry: 150 },
     // Custom navigation for your current separate /game and /shop folders.
-    gameUrl: '/game/game.html',
-    shopUrl: '/shop/shop.html'
+    gameUrl: '/game.html',
+    shopUrl: '/shop.html'
   };
 })();
