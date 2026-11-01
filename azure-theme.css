@@ -1,14 +1,47 @@
-/* OPTIONAL GLOBAL CAKE SHOP THEME — install after existing CSS on game/shop/admin pages.
-   Does not change any bakery background, reception, character PNG, bubble or animation. */
-:root{color-scheme:dark!important;--bg:#020a1c!important;--panel:#071c40!important;--panel2:#0b3062!important;--line:#2b65a8!important;--text:#e5f6ff!important;--muted:#9bbddd!important;--pink:#6de2ff!important;--gold:#bce7ff!important}
-body{background:radial-gradient(ellipse at 55% 0%,#103c7d 0%,#061941 36%,#020916 88%)!important;color:#e6f6ff!important}
+/* Does not change any bakery background, reception, character PNG, bubble or animation. */
+:root{
+   color-scheme:dark!important;
+   --bg:#020a1c!important;
+   --panel:#071c40!important;
+   --panel2:#0b3062!important;
+   --line:#2b65a8!important;
+   --text:#e5f6ff!important;
+   --muted:#9bbddd!important;
+   --pink:#6de2ff!important;
+   --gold:#bce7ff!important
+}
+body{
+   background:radial-gradient(
+      ellipse at 55% 0%,
+      #103c7d 0%,
+      #061941 36%,
+      #020916 88%
+   )!important;
+   color:#e6f6ff!important
+}
 a{color:#a3eaff!important}
+
 /* Player game cards, shop & admin cards; avoid the layered reception scene. */
 .panel:not(#cutscene) {background:#071d44f2!important;border-color:#2769a0!important}
 #cutscene.panel{background:#071d44f2!important;border-color:#2769a0!important}
-#chooseOrder .orderCard,#locations .destination,section:not(#cutscene):not(#locations):not(#chooseOrder),.item,.entry,.glass,.card:not(.bubble),.stat,.member-line,.purchase-card{border-color:#275f9e!important}
-#chooseOrder .orderCard,#locations .destination,.item,.entry,.member-line,.purchase-card{background:#0b2c5a!important;color:#e7f6ff!important}
-#chooseOrder .orderCard:hover,#locations .destination:hover,.item:hover{background:#113b75!important}
+#chooseOrder .orderCard,
+#locations .destination,
+section:not(#cutscene):not(#locations):not(#chooseOrder),
+.item,
+.entry,
+.glass,
+.card:not(.bubble),
+.stat,
+.member-line,
+.purchase-card{border-color:#275f9e!important}
+#chooseOrder .orderCard,
+#locations .destination,
+.item,.entry,
+.member-line,
+.purchase-card{background:#0b2c5a!important;color:#e7f6ff!important}
+#chooseOrder .orderCard:hover,
+#locations .destination:hover,
+.item:hover{background:#113b75!important}
 button:not([class*="ghost"]):not([class*="navitem"]){border-color:#307bac}
 button:not([class*="ghost"]):not([class*="navitem"]):not([class*="orderCard"]):not([class*="destination"]):not([class*="navlink"]):not([class*="secondary"]){background:#4cbbea;color:#031a35}
 button:disabled{opacity:.48}
@@ -21,5 +54,3 @@ button:disabled{opacity:.48}
 input:not([type=checkbox]),textarea,select{background:#071d3c!important;border-color:#356da0!important;color:#e7f7ff!important}
 input:focus,textarea:focus,select:focus{border-color:#8deaff!important}
 .stat b,.micro,.eyebrow,.logo small{color:#90e5ff!important}
-/* Hide no scene contents; never style .stageScene, .customerWrap, .sceneLayer,
-   .bubbleWrap, #bubbleBox or #speechArt here. */
