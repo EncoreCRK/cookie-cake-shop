@@ -68,10 +68,24 @@ async function q(p) {
   return data;
 }
 function imagePath(t) {
-  const p = t.image_path;
-  return p && /^(https:\/\/|\/|assets\/)/.test(p)
-    ? p
-    : `/assets/toppings/${TOPPING_FILES[t.code] || `${t.code}.png`}`;
+  const p = t.image_path?.trim();
+
+  if (p) {
+    if (
+      p.startsWith("https://") ||
+      p.startsWith("/")
+    ) {
+      return p;
+    }
+
+    if (p.startsWith("assets/")) {
+      return "/" + p;
+    }
+  }
+
+  return `/assets/toppings/${
+    TOPPING_FILES[t.code] || `${t.code}.png`
+  }`;
 }
 function make(tag, cls, text) {
   const x = document.createElement(tag);
