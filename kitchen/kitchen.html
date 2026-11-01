@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Cookie Cake Shop | Kitchen</title>
-  <link rel="stylesheet" href="kitchen/kitchen.css">
+  <link rel="stylesheet" href="/kitchen/kitchen.css">
 </head>
 <body>
   <main class="kitchen-shell">
     <header class="topbar">
-      <a href="game.html" class="back">← Back to the Bakery</a>
+      <a href="/game/game.html" class="back">← Back to the Bakery</a>
       <strong>🍰 Cookie Cake Shop — Kitchen</strong>
-      <a href="shop.html">Toppings Shop</a>
+      <a href="/shop/shop.html">Toppings Shop</a>
     </header>
     <div class="heading">
       <div><small class="eyebrow">CREATE YOUR MASTERPIECE</small><h1 id="customerName">Loading your customer's order...</h1><p id="orderSummary">Your selected customer's order appears here.</p></div>
@@ -27,7 +27,22 @@
           <div id="flavorPreview" class="flavor-preview"><img id="flavorPicture" src="/assets/frostings/strawberry.png" alt="Selected frosting artwork" onerror="this.hidden=true"><span id="flavorName">Strawberry frosting</span></div>
           <label for="layers">Cake layers</label>
           <div class="layers-pills" id="layerOptions">
-            <button type="button" data-layers="1"><img src="/assets/layers/1.png" alt="" onerror="this.hidden=true"><span>1 layer</span></button><button type="button" data-layers="2"><img src="/assets/layers/2.png" alt="" onerror="this.hidden=true"><span>2 layers</span></button><button type="button" data-layers="3"><img src="/assets/layers/3.png" alt="" onerror="this.hidden=true"><span>3 layers</span></button><button type="button" data-layers="4"><img src="/assets/layers/4.png" alt="" onerror="this.hidden=true"><span>4 layers</span></button>
+            <button type="button" data-layers="1">
+              <img src="/assets/layers/1.png" alt="" onerror="this.hidden=true">
+              <span>1 layer</span>
+            </button>
+            <button type="button" data-layers="2">
+                <img src="/assets/layers/2.png" alt="" onerror="this.hidden=true">
+              <span>2 layers</span>
+            </button>
+            <button type="button" data-layers="3">
+              <img src="/assets/layers/3.png" alt="" onerror="this.hidden=true">
+              <span>3 layers</span>
+            </button>
+            <button type="button" data-layers="4">
+              <img src="/assets/layers/4.png" alt="" onerror="this.hidden=true">
+              <span>4 layers</span>
+            </button>
           </div>
           <p class="help">Each layer uses one frosting of the selected flavor.</p>
         </section>
@@ -73,8 +88,8 @@
       </div>
     </div>
   </main>
-  <script src="config.js"></script>
+  <script src="/config.js"></script>
   <script src="https://unpkg.com/konva@10/konva.min.js"></script>
-  <script type="module" src="kitchen/kitchen.js"></script>
+  <script type="module" src="/kitchen/kitchen.js"></script>
 </body>
 </html>
